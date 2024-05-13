@@ -2,7 +2,7 @@ const { text } = require('express');
 const path = require('path');
 
 consthttps = require('https');
-function sendMessageWhatsaApp(textResponse, number) {
+function sendMessageWhatsApp(textResponse, number) {
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -36,4 +36,4 @@ function sendMessageWhatsaApp(textResponse, number) {
     req.end();
 }
 
-module.exports = { sendMessageWhatsaApp };
+module.exports = { sendMessageWhatsApp };
