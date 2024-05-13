@@ -25,7 +25,10 @@ const ReceivedMessage = (req, res) => {
        var changes = (entry["changes"])[0];
        var value = changes["value"];
        var messageObject = value["messages"];
-       myConsole.log(messageObject); 
+       var messages = messageObject[0];
+        var text = GetTestUser(messages);
+
+       
        res.send("EVENT_RECEIVED"); // Registra el mensaje
     } catch (e) {
         myConsole.log(e);  // Registra el error
@@ -33,7 +36,36 @@ const ReceivedMessage = (req, res) => {
     }
 }
 
-module.exports = {
+function GetTestUser(messages){
+    var text = "";
+    
+   var typeMessage = messages["type"];
+   if (typeMessage === "text"){
+    text = (messages["text"])["body"];
+    console.log(text);
+}
+else if (typeMessage === "interactive"){
+    var interactiveObject = messages["interactive"];
+    var typeInteractive = interactiveObject["type"];
+    myConsole.log(interactiveObject);
+    if (typeInteractive === "button_reply"){
+        text = (interactiveObject["button_reply"])["title"];
+
+    }
+    else if(typeInteractive === "list_reply"){
+        text = (interactiveObject["list_reply"])["title"];
+
+    }else{
+        myConsole.log("Tipo de mensaje no reconocido");
+    }
+  
+}else{ myConsole.log("Tipo de mensaje no reconocido");}
+return text;
+}
+
+
+
+    module.exports = {
     VerifyToken,
     ReceivedMessage 
 }
