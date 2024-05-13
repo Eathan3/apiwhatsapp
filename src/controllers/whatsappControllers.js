@@ -1,3 +1,5 @@
+const fs = require('fs');
+const myConsole = new console.Console(fs.createWriteStream('./logs.txt'));
 require('dotenv').config(); // Asegúrate de instalar el paquete dotenv
 
 const VerifyToken = (req, res) => {
@@ -18,7 +20,19 @@ const VerifyToken = (req, res) => {
 }
 
 const ReceivedMessage = (req, res) => {
-    res.send("hola Received");  // Considera expandir esta función
+    try{
+        var entry = (req.body["entry"])[0];
+        var changes = (req.body["changes"][0];
+        var value = changes["value"];
+        var messageObject = value["message"];
+        myConsole.log(messageObject);
+        res.send("EVENT_RECEIVED");
+
+    }catch(e){
+        res.send("EVENT_RECEIVED");
+
+    }
+
 }
 
 module.exports = {
