@@ -27,7 +27,7 @@ const ReceivedMessage = (req, res) => {
        var messageObject = value["messages"];
        var messages = messageObject[0];
         var text = GetTestUser(messages);
-
+        myConsole.log(text);
        
        res.send("EVENT_RECEIVED"); // Registra el mensaje
     } catch (e) {
