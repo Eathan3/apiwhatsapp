@@ -19,7 +19,7 @@ function sendMessageWhatsaApp(textResponse, number) {
          body: data,
             headers: {
                 "Content-Type": "application/json",
-                authorization: "Bearer " +process.env.WHATSAPP_API_TOKEN
+                authorization: "Bearer EAATidZB8ZC87wBO5GCakoNriWLximSCWxTvQbJUJ3lMhaBRzFAhl1xPRXg5VTKbpTSB6RlhrwHwA39zJZBzVrp24jJ6sZBvjb3yaI6MJMG781VD7HxBpak8oeBHLIUQ71HQvMZCa1lZB7Q6bisuPOOiD4LeqiYNk6KCNEMTu5zTFnCMeMvHMZAHZCmlmVUQrUSNkLe93ozCVvZANlEtWJZAVbAplTLAasXdKUJ4ZBYv7Tetor17NYXT0AZBV "
     }};
     const req = https.request(options, (res) => {
         console.log(`statusCode: ${res.statusCode}`);
