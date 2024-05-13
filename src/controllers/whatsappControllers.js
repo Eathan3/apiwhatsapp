@@ -1,7 +1,7 @@
 const VerifyToken = (req, res) =>{
 
     try {
-        var accessToken = "neonatech2024";
+        var accessToken = "NEONATECH2024";
         var token = req.query["hub.verify_token"];
         var challenge = req.body["hub.challenge"];
 
