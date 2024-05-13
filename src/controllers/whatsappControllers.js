@@ -14,27 +14,23 @@ const VerifyToken = (req, res) => {
             res.status(400).send({ error: "Invalid token or challenge missing" });
         }    
     } catch (e) {
-        console.error(e); // Logra el error
-        res.status(500).send({ error: "Internal server error" });
+        console.error(e); // Registra el error
+        res.status(500).send({ error: "Internal server error: " + e.message });
     }  
 }
 
 const ReceivedMessage = (req, res) => {
-    try{
+    try {
         var entry = (req.body["entry"])[0];
-        var changes = (entry["changes"])[0];
-        var value = changes["value"];
-        var messageObject = value["message"];
-        myConsole.log(messageObject);
+       var changes = (entry["changes"])[0];
+       var value = changes["value"];
+       var messageObject = value["messages"];
+       myConsole.log(messageObject); 
+       res.send("EVENT_RECEIVED"); // Registra el mensaje
+    } catch (e) {
+        myConsole.log(e);  // Registra el error
         res.send("EVENT_RECEIVED");
-
-    }catch(e){
-        myConsole.log(e);
-
-        res.send("EVENT_RECEIVED");
-
     }
-
 }
 
 module.exports = {
