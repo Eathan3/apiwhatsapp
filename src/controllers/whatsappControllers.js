@@ -1,6 +1,7 @@
 const fs = require('fs');
 const myConsole = new console.Console(fs.createWriteStream('./logs.txt'));
-require('dotenv').config(); // Asegúrate de instalar el paquete dotenv
+require('dotenv').config(); 
+const whatsappService = require("../services/whatsappService");// Asegúrate de instalar el paquete dotenv
 
 const VerifyToken = (req, res) => {
     try {
@@ -28,9 +29,12 @@ const ReceivedMessage = (req, res) => {
 
        if(typeof messageObject != "undefined"){
        var messages = messageObject[0];
+        var number = messages["from"]; 
         var text = GetTestUser(messages);
+       
 
         myConsole.log(text);
+        whatsappService.sendMessageWhatsaApp("el usuarios dijo" + text, number); // Envia el mensaje
     }
        res.send("EVENT_RECEIVED"); // Registra el mensaje
     } catch (e) {
